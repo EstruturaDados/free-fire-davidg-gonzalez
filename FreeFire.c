@@ -42,6 +42,7 @@ void exibirMenu() {
     printf("1. Adicionar Item (Loot)\n");
     printf("2. Remover Item\n");
     printf("3. Listar Itens na Mochila\n");
+    printf("4. Buscar Item\n");
     printf("0. Sair\n");
     printf("--------------------------------------------\n");
     printf("Escolha uma opcao: ");
@@ -120,6 +121,31 @@ void listarItens() {
     printf("--------------------------------------------\n");
 }
 
+// buscarItem():
+// Busca sequencial por nome.
+void buscarItem() {
+    char nome[30];
+    int encontrado = 0;
+
+    printf("\nDigite o nome do item para buscar: ");
+    scanf("%s", nome);
+
+    for(int i = 0; i < numItens; i++) {
+        if(strcmp(mochila[i].nome, nome) == 0) {
+            printf("\nItem encontrado!\n");
+            printf("Nome: %s\n", mochila[i].nome);
+            printf("Tipo: %s\n", mochila[i].tipo);
+            printf("Quantidade: %d\n", mochila[i].quantidade);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if(!encontrado) {
+        printf("\nItem nao encontrado!\n");
+    }
+}
+
 // ===================== MAIN =====================
 
 int main() {
@@ -153,6 +179,9 @@ int main() {
                 listarItens();
                 break;
 
+            case 4:
+                buscarItem();
+                break;
 
             case 0:
                 printf("\nSaindo...\n");
